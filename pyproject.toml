@@ -41,9 +41,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/amanixm/sweepr"
-Issues = "https://github.com/amanixm/sweepr/issues"
-Source = "https://github.com/amanixm/sweepr"
+Homepage = "https://github.com/amandeavor/sweepr"
+Issues = "https://github.com/amandeavor/sweepr/issues"
+Source = "https://github.com/amandeavor/sweepr"
 
 [project.scripts]
 sweepr = "sweepr.cli:app"

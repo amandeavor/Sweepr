@@ -2,7 +2,7 @@
 
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![CI](https://github.com/amanixm/sweepr/actions/workflows/ci.yml/badge.svg)](https://github.com/amanixm/sweepr/actions/workflows/ci.yml)
+[![CI](https://github.com/amandeavor/sweepr/actions/workflows/ci.yml/badge.svg)](https://github.com/amandeavor/sweepr/actions/workflows/ci.yml)
 [![Install with pipx](https://img.shields.io/badge/install%20with-pipx-2f6f9f)](https://pipx.pypa.io/)
 [![Typer + Rich](https://img.shields.io/badge/CLI-Typer%20%2B%20Rich-purple)](https://typer.tiangolo.com/)
 
@@ -30,13 +30,13 @@ Dry-run is the default. Files are only moved when you pass `--apply`.
 Install directly from GitHub with `pipx`:
 
 ```bash
-pipx install git+https://github.com/amanixm/sweepr.git
+pipx install git+https://github.com/amandeavor/sweepr.git
 ```
 
 Or install from a local checkout:
 
 ```bash
-git clone https://github.com/amanixm/sweepr.git
+git clone https://github.com/amandeavor/sweepr.git
 cd sweepr
 pipx install .
 ```
