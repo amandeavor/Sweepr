@@ -108,21 +108,6 @@ sweepr --help
 sweepr organize --help
 ```
 
-## Suggested GitHub topics
-
-Use these topics on the repository to help developers find the project:
-
-```text
-python
-cli
-typer
-rich
-file-organizer
-automation
-productivity
-open-source
-```
-
 ## Safety model
 
 `sweepr` is designed to avoid surprising file operations:
@@ -155,9 +140,15 @@ Format code:
 ruff format .
 ```
 
-## Changelog
+## Community and Documentation
 
-See [CHANGELOG.md](CHANGELOG.md) for release notes.
+- [CONTRIBUTING.md](CONTRIBUTING.md): Setup, development commands, and pull request guidelines.
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md): Community standards and participation guidelines.
+- [SECURITY.md](SECURITY.md): Vulnerability reporting and filesystem safety model.
+- [GOVERNANCE.md](GOVERNANCE.md): Project roles and maintainership path.
+- [ROADMAP.md](ROADMAP.md): Near-term and long-term planned capabilities.
+- [SUPPORT.md](SUPPORT.md): Getting help and opening issues.
+- [CHANGELOG.md](CHANGELOG.md): Release history and version notes.
 
 ## License
 
