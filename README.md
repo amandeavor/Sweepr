@@ -1,155 +1,179 @@
+<div align="center">
+
 # sweepr
 
-[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
+**Smart, safe, and reversible terminal file organizer.**
+
+[![Release](https://img.shields.io/github/v/release/amandeavor/Sweepr?color=blue&label=version)](https://github.com/amandeavor/Sweepr/releases)
+[![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![CI Status](https://img.shields.io/github/actions/workflow/status/amandeavor/Sweepr/ci.yml?branch=main&label=CI)](https://github.com/amandeavor/Sweepr/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![CI](https://github.com/amandeavor/sweepr/actions/workflows/ci.yml/badge.svg)](https://github.com/amandeavor/sweepr/actions/workflows/ci.yml)
 [![Install with pipx](https://img.shields.io/badge/install%20with-pipx-2f6f9f)](https://pipx.pypa.io/)
-[![Typer + Rich](https://img.shields.io/badge/CLI-Typer%20%2B%20Rich-purple)](https://typer.tiangolo.com/)
+[![Code Style: Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-`sweepr` is a smart file organizer for the terminal. It previews exactly what it
-will move, then safely organizes a directory by file type or modification date,
-with undo metadata for applied sweeps.
+<p align="center">
+  <a href="#quickstart">Quickstart</a> •
+  <a href="#key-features">Features</a> •
+  <a href="#cli-command-reference">Commands</a> •
+  <a href="#safety-model">Safety Model</a> •
+  <a href="#contributing">Contributing</a>
+</p>
 
-Dry-run is the default. Files are only moved when you pass `--apply`.
+</div>
 
-## Features
+---
 
-- Organize by type: `Images`, `Documents`, `Videos`, `Archives`, `Audio`, `Code`, and more.
-- Organize by modification date into `YYYY/MM/`.
-- Safe preview mode with Rich tables.
-- Category summaries for dry-run previews.
-- Recursive scanning for nested inbox folders.
-- Undo support using `.sweepr` manifests.
-- `sweepr types` command for supported file categories.
-- Collision-safe destination names.
-- Friendly errors, progress indicators, and summary reports.
-- Modern `src/` package layout with Typer, Rich, pytest, Ruff, and GitHub Actions.
+`sweepr` is a fast, terminal-native file organizer designed for cluttered directories like `~/Downloads` and `~/Desktop`. It previews every single action in high-contrast Rich tables before touching a file, sorts files intelligently by category or modification date, and generates cryptographic JSON manifests so any operation can be instantly undone.
 
-## Installation
+**Dry-run is the default.** Files are moved only when you explicitly pass `--apply`.
 
-Install directly from GitHub with `pipx`:
-
-```bash
-pipx install git+https://github.com/amandeavor/sweepr.git
+```
+$ sweepr organize ~/Downloads --by-type
+╭─────────────────────────────────────────────────────────────────────────────╮
+│ Sweepr Dry Run: /Users/aman/Downloads                                       │
+╰─────────────────────────────────────────────────────────────────────────────╯
+┌───────────────────────┬────────────┬─────────────┬──────────────────────────┐
+│ Source File           │ Size       │ Category    │ Destination Target       │
+├───────────────────────┼────────────┼─────────────┼──────────────────────────┤
+│ quarterly_report.pdf  │ 2.4 MB     │ Documents   │ Documents/quarterly_rep… │
+│ prototype_mockup.png  │ 4.1 MB     │ Images      │ Images/prototype_mockup… │
+│ recording_demo.mp4    │ 48.2 MB    │ Videos      │ Videos/recording_demo.m… │
+│ dataset_backup.tar.gz │ 128.0 MB   │ Archives    │ Archives/dataset_backup… │
+└───────────────────────┴────────────┴─────────────┴──────────────────────────┘
+Scan complete: 4 files identified across 4 categories (0 moved, dry-run).
+Pass --apply to execute this sweep.
 ```
 
-Or install from a local checkout:
+---
+
+## Key Features
+
+| Capability | Description |
+| :--- | :--- |
+| **Smart Classification** | Automatically categorizes into `Images`, `Documents`, `Videos`, `Audio`, `Archives`, `Code`, `Data`, `Spreadsheets`, `Presentations`, and `Books`. |
+| **Timeline Sorting** | Organizes cluttered photo dumps and logs chronologically into `YYYY/MM/` directories. |
+| **Zero-Risk Previews** | High-density terminal tables show exact source paths, targets, and file sizes before moving anything. |
+| **Atomic Undo** | Every applied run generates a local `.sweepr/<timestamp>.json` manifest. Run `sweepr undo <dir>` to reverse any sweep. |
+| **Collision Protection** | Never overwrites existing files. Automatically suffixes conflicting names (`report (1).pdf`). |
+| **Nested Scanning** | Deeply inspect nested subfolders with `--recursive` while preserving directory trees. |
+
+---
+
+## Quickstart
+
+### 1. Install
+
+Install with `pipx` (isolated virtual environment):
 
 ```bash
-git clone https://github.com/amandeavor/sweepr.git
-cd sweepr
-pipx install .
+pipx install git+https://github.com/amandeavor/Sweepr.git
 ```
 
-For development:
+Or install from source:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install -e ".[dev]"
+git clone https://github.com/amandeavor/Sweepr.git
+cd Sweepr
+pip install -e .
 ```
 
-On Windows PowerShell:
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -e ".[dev]"
-```
-
-## Usage
-
-Preview organizing a folder by file type. This is the safest first command:
+### 2. Run a safe preview
 
 ```bash
-sweepr organize ~/Downloads --by-type --dry-run
+sweepr organize ~/Downloads --by-type
 ```
 
-Apply the same type-based organization:
+### 3. Apply changes and undo if needed
 
 ```bash
+# Apply organization
 sweepr organize ~/Downloads --by-type --apply
+
+# Undo the sweep anytime
+sweepr undo ~/Downloads
 ```
 
-Organize nested files recursively:
+---
+
+## CLI Command Reference
+
+### `sweepr organize`
+
+Organizes files within the specified directory.
 
 ```bash
-sweepr organize ~/Downloads --by-type --recursive --apply
+sweepr organize <PATH> [OPTIONS]
 ```
 
-Preview organizing by modification date:
+| Flag | Type | Description |
+| :--- | :--- | :--- |
+| `<PATH>` | `Directory` | Target directory to organize *(default: current directory)*. |
+| `--by-type` | `Flag` | Categorize files by extension into standard category directories. |
+| `--by-date` | `Flag` | Group files chronologically into `YYYY/MM/` folders based on modification time. |
+| `--apply` | `Flag` | Execute file moves. Without this flag, a dry-run preview is generated. |
+| `--recursive` / `-r` | `Flag` | Scan and organize nested subdirectories. |
 
-```bash
-sweepr organize ~/Downloads --by-date --dry-run
-```
+### `sweepr undo`
 
-List supported file categories and extensions:
-
-```bash
-sweepr types
-```
-
-Undo the latest applied sweep:
+Reverts the most recent sweep executed in the target directory using saved metadata manifests.
 
 ```bash
 sweepr undo ~/Downloads
 ```
 
-Show version:
+### `sweepr types`
+
+Displays all known file extensions and their mapped categories.
 
 ```bash
-sweepr --version
+sweepr types
 ```
 
-Show help:
+---
+
+## Safety Model
+
+`sweepr` prioritizes file safety above all else:
+
+1. **Non-Destructive Defaults**: Runs in `--dry-run` mode unless `--apply` is explicitly given.
+2. **Conflict Avoidance**: If `Documents/notes.txt` already exists, incoming files are renamed to `Documents/notes (1).txt`.
+3. **Internal Exclusions**: Automatically skips `.sweepr` metadata, hidden system files, and symbolic links to prevent broken links.
+4. **Safe Reverse Mapping**: During `undo`, if a new file has taken the original path in the meantime, Sweepr refuses to overwrite it and alerts the user.
+
+---
+
+## Development & Testing
 
 ```bash
-sweepr --help
-sweepr organize --help
-```
+# Setup virtual environment
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\Activate.ps1
 
-## Safety model
+# Install development dependencies
+pip install -e ".[dev]"
 
-`sweepr` is designed to avoid surprising file operations:
-
-- `--dry-run` is the default.
-- Applied runs create an undo manifest in `<path>/.sweepr/`.
-- Existing destination files are never overwritten.
-- Duplicate names get a numbered suffix, such as `photo (1).jpg`.
-- Symlinks and internal `.sweepr` metadata are skipped.
-- Undo will not overwrite a file that appeared at the original location after the sweep.
-
-## Development
-
-Run tests:
-
-```bash
+# Run test suite
 pytest
-```
 
-Run linting and formatting checks:
-
-```bash
+# Run linting and formatting checks
 ruff check .
 ruff format --check .
 ```
 
-Format code:
+---
 
-```bash
-ruff format .
-```
+## Community & Governance
 
-## Community and Documentation
+- [Contributing Guide](CONTRIBUTING.md)
+- [Security Policy](SECURITY.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Governance & Roles](GOVERNANCE.md)
+- [Project Roadmap](ROADMAP.md)
+- [Support Guidelines](SUPPORT.md)
+- [Changelog](CHANGELOG.md)
 
-- [CONTRIBUTING.md](CONTRIBUTING.md): Setup, development commands, and pull request guidelines.
-- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md): Community standards and participation guidelines.
-- [SECURITY.md](SECURITY.md): Vulnerability reporting and filesystem safety model.
-- [GOVERNANCE.md](GOVERNANCE.md): Project roles and maintainership path.
-- [ROADMAP.md](ROADMAP.md): Near-term and long-term planned capabilities.
-- [SUPPORT.md](SUPPORT.md): Getting help and opening issues.
-- [CHANGELOG.md](CHANGELOG.md): Release history and version notes.
+---
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
