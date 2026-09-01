@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/assets/social-preview.png" alt="Sweepr: Preview. Organize. Undo." width="100%">
+
 # sweepr
 
 **Smart, safe, and reversible terminal file organizer.**
