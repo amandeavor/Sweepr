@@ -25,6 +25,8 @@
 
 ---
 
+> **Status:** Usable v0.1.x release. Dry-run is the default, and applied operations include an undo manifest.
+
 `sweepr` is a fast, terminal-native file organizer designed for cluttered directories like `~/Downloads` and `~/Desktop`. It previews every single action in high-contrast Rich tables before touching a file, sorts files intelligently by category or modification date, and generates cryptographic JSON manifests so any operation can be instantly undone.
 
 **Dry-run is the default.** Files are moved only when you explicitly pass `--apply`.
