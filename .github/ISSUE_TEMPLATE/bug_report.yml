@@ -1,0 +1,37 @@
+name: Bug Report
+description: Report an issue or unexpected behavior in sweepr
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug report. Please provide sufficient details to reproduce the issue safely.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Description
+      description: What happened, and what did you expect to happen instead?
+      placeholder: Describe the problem clearly...
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Provide the command line, directory structure, or sample files to reproduce the behavior.
+      placeholder: |
+        1. Run `sweepr organize ...`
+        2. See error ...
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS version, Python version, and sweepr version (`sweepr --version`).
+      value: |
+        - OS: [e.g. Ubuntu 24.04, macOS 14, Windows 11]
+        - Python version: [e.g. 3.12.3]
+        - sweepr version: [e.g. 0.1.1]
+    validations:
+      required: true

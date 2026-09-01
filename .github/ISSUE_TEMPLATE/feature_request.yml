@@ -1,0 +1,29 @@
+name: Feature Request
+description: Propose a new feature, file category, or CLI enhancement for sweepr
+labels: ["enhancement", "needs-discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Propose an improvement or new capability for sweepr.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Motivation
+      description: What problem are you trying to solve?
+      placeholder: Explain why this capability is needed...
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution
+      description: Describe your proposed CLI interface, flag, or behavior.
+      placeholder: Describe how the new feature should work...
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Any alternative solutions or existing workarounds considered?
