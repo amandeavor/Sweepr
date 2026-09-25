@@ -11,7 +11,7 @@
 
 If you discover a potential security issue in `sweepr`, particularly regarding unsafe path traversal, accidental file destruction, permission escalation, or unintended file modification:
 
-1. Please report it privately using GitHub's [Private Vulnerability Reporting](https://github.com/amandeavor/sweepr/security/advisories/new) or by contacting the maintainer.
+1. Please report it privately using GitHub's [Private Vulnerability Reporting](https://github.com/amandeavor/Sweepr/security/advisories/new) or by contacting the maintainer.
 2. Provide a reproduction case with minimal directory structures and command arguments.
 3. Allow reasonable time for investigation and patch preparation before disclosing the issue publicly.
 

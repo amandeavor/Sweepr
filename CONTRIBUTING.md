@@ -11,7 +11,7 @@ All contributors and maintainers are expected to follow our [Code of Conduct](CO
 Clone the repository and create a virtual environment:
 
 ```bash
-git clone https://github.com/amandeavor/sweepr.git
+git clone https://github.com/amandeavor/Sweepr.git
 cd sweepr
 python -m venv .venv
 source .venv/bin/activate
