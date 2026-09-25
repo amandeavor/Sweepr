@@ -67,13 +67,27 @@ Pass --apply to execute this sweep.
 
 ### 1. Install
 
-Install with `pipx` (isolated virtual environment):
+Install from PyPI with `pipx` (recommended — isolated virtual environment):
+
+```bash
+pipx install sweepr-cli
+```
+
+Or with pip:
+
+```bash
+pip install sweepr-cli
+```
+
+The CLI command remains `sweepr` after install.
+
+Fallback — install from GitHub:
 
 ```bash
 pipx install git+https://github.com/amandeavor/Sweepr.git
 ```
 
-Or install from source:
+Or install from a local clone for development:
 
 ```bash
 git clone https://github.com/amandeavor/Sweepr.git
