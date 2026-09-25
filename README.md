@@ -67,21 +67,7 @@ Pass --apply to execute this sweep.
 
 ### 1. Install
 
-Install from PyPI with `pipx` (recommended — isolated virtual environment):
-
-```bash
-pipx install sweepr-cli
-```
-
-Or with pip:
-
-```bash
-pip install sweepr-cli
-```
-
-The CLI command remains `sweepr` after install.
-
-Fallback — install from GitHub:
+Install from GitHub with `pipx` (recommended until the first PyPI upload lands):
 
 ```bash
 pipx install git+https://github.com/amandeavor/Sweepr.git
@@ -94,6 +80,15 @@ git clone https://github.com/amandeavor/Sweepr.git
 cd Sweepr
 pip install -e .
 ```
+
+The console command is `sweepr`. The intended PyPI project name is `sweepr-cli` (the unscoped name `sweepr` is taken by an unrelated package). Once published, install with:
+
+```bash
+pipx install sweepr-cli
+# or: pip install sweepr-cli
+```
+
+Do not treat the PyPI commands as live until `sweepr-cli` appears on https://pypi.org/project/sweepr-cli/.
 
 ### 2. Run a safe preview
 
